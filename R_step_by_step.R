@@ -70,6 +70,7 @@ bar <- foo;
 #' names as test variables and in some situations this could overwrite the
 #' existing variables!
 #'
+#Comments ----
 #' ## Comments
 #'
 #' `#'` This indicates that this line should be formatted as text. It must be
@@ -82,7 +83,13 @@ bar <- foo;
 #'
 #' `#` This is an ordinary comment. Everything after it on the same line is not
 #' executed.
+#' 
+#' ### this is a top level header
+#' 
+#' this is text that begins with `#'
+#this is text that begins with #
 #'
+#Functions and Data Types----
 #' # Functions and Data Types
 #'
 #' ## Functions and Simple Data Types
@@ -93,6 +100,8 @@ bar <- foo;
 #' `exp()`, `sqrt()`
 
 #+ assignment_numeric
+#+ 
+number <- 3; number
 foo <- 2+2; foo
 foo <- 5*2; foo
 foo <- log(2); foo
