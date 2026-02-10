@@ -52,7 +52,13 @@ whatisthis <- function(xx){
 #+ assignment_operator
 foo <- 500;
 bar <- foo <- 500;
-bar <- foo;
+bar <- foo
+#'
+#' ## About Me
+my_age <- 31
+my_name <- 'AJ'
+my_program <- 'MSCITS'
+#'
 #' It's not a formal rule, it's rarely even written down, but `foo`, `baz`,
 #' `bat`, etc. are throw-away variables people use for testing. If you need more
 #' test variables, just make up three letter ones that start with `b`.
@@ -77,6 +83,7 @@ bar <- foo;
 #' the first two characters in that line in order to work.
 #'
 #' `#+` This indicates that the following lines (until the next #' or #+) should
+#Note to self: Example above can be seen in line 52 :)
 #' be treated as a "code chunk". I.e. the next lines (but not this one) will be
 #' run, the code will be displayed according to your settings and the results
 #' will be displayed according to your settings.
@@ -84,11 +91,7 @@ bar <- foo;
 #' `#` This is an ordinary comment. Everything after it on the same line is not
 #' executed.
 #' 
-#' ### this is a top level header
-#' 
-#' this is text that begins with `#'
 #this is text that begins with #
-#'
 #Functions and Data Types----
 #' # Functions and Data Types
 #'
@@ -154,7 +157,7 @@ g <- !(bar>50); g          #  NOT operator can be used with any TRUE/FALSE expre
 Sys.Date()
 Sys.time()
 #?as.Date
-my_date <- "2022-01-31"; #' create example date
+my_date <- "2026-02-10"; #' create example date
 print (my_date)       ; #' print my_date variable
 class (my_date)       ; #' check class of the variable
 new_date <- as.Date(my_date) ; #' convert character string
