@@ -48,6 +48,8 @@ whatisthis <- function(xx){
 #' To store a value as variable `foo` in R the convention is to use the
 #' `<-` operator, not `=`. This makes it easier to distinguish stand-alone
 #' expressions from function arguments.
+#' 
+#' 
 
 #+ assignment_operator
 foo <- 500;
@@ -92,6 +94,27 @@ my_program <- 'MSCITS'
 #' executed.
 #' 
 #this is text that begins with #
+#'
+#'# Importing data ----
+#' ## Importing and Exporting Data the Easy Way with RIO
+#'
+#'Exporting:
+#+ Data Export
+export(cars,'cars.xlsx')
+export(cars,'cars.csv')
+#'Importing:
+#+ Data Import
+my_cars <- import('cars.xlsx')
+pander(my_cars)
+my_cars <- import('cars.csv')
+pander(my_cars)
+#'Importing:
+#+ Data Import
+my_cars <- import('C:\\\\Users\\AJ work\\OneDrive - UT Health San Antonio\\zShipments + Work Orders\\zPending Work Orders\\Kitano ascites shipment to Faron\\Ascites specimens to Faron.xlsx')
+pander(my_cars)
+
+
+
 #Functions and Data Types----
 #' # Functions and Data Types
 #'
@@ -103,7 +126,6 @@ my_program <- 'MSCITS'
 #' `exp()`, `sqrt()`
 
 #+ assignment_numeric
-#+ 
 number <- 3; number
 foo <- 2+2; foo
 foo <- 5*2; foo
