@@ -95,7 +95,7 @@ my_program <- 'MSCITS'
 #' 
 #this is text that begins with #
 #'
-#'# Importing data ----
+## Importing data ----
 #' ## Importing and Exporting Data the Easy Way with RIO
 #'
 #'Exporting:
@@ -353,8 +353,6 @@ iris[,c("Petal.Length","Petal.Width","Species")]
 prevar <- c("Petal.Length","Petal.Width","Species")  # define columns together
 iris[,prevar]
 
-
-
 iris$Species # picks the column from dataset by adding $sign
 outcome <- "Species"
 iris$outcome
@@ -365,9 +363,11 @@ iris [["Species"]]
 #+ df_columnsrows
 iris[4:10,prevar]
 
+# DPLYR ----
 #' # Datasets and `dplyr`
 #+ Working with datasets and DPLYR
-
+head(iris)
+mutate(iris, Sepal.Length * Sepal.Width)
 
 #' # Linear Models
 #+ linear_models
