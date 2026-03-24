@@ -39,6 +39,7 @@ panderOptions('table.split.table',Inf); panderOptions('table.split.cells',Inf);
 whatisthis <- function(xx){
   list(class=class(xx),info=c(mode=mode(xx),storage.mode=storage.mode(xx)
                               ,typeof=typeof(xx)))};
+Data_To_Import <- 'C:\\\\Users\\AJ work\\OneDrive - UT Health San Antonio\\zShipments + Work Orders\\zPending Work Orders\\Kitano ascites shipment to Faron\\Ascites specimens to Faron.xlsx'
 # R basic syntax ----
 #'
 #' # R basic syntax
@@ -110,7 +111,7 @@ my_cars <- import('cars.csv')
 pander(my_cars)
 #'Importing:
 #+ Data Import
-my_cars <- import('C:\\\\Users\\AJ work\\OneDrive - UT Health San Antonio\\zShipments + Work Orders\\zPending Work Orders\\Kitano ascites shipment to Faron\\Ascites specimens to Faron.xlsx')
+if(file.exists(Data_To_Import)){my_cars <- import(Data_To_Import)}
 pander(my_cars)
 
 
@@ -369,25 +370,33 @@ iris[4:10,prevar]
 head(iris)
 mutate(iris, Sepal.Length * Sepal.Width)
 
-#' # Linear Models
-#+ linear_models
-example(lm) # a sample for linear model
+#Plotting your data ----
+plot(iris)
+plot(Sepal.Length~Sepal.Width,data=iris)
+data.matrix(iris) %>% heatmap
+#' this makes names become numeric. ctrl+shift+M pipes
 
-perf <- lm(mpg~hp+wt+qsec,mtcars)
-summary(perf) # gives detail summary
-summary(perf)$coeff # gives coefficient column
-glance(perf) #gives brief
-tidy(perf) # gives tidy cleaner version inside
-lm(mpg~hp+wt+vs,mtcars) %>% tidy() %>% select(c("estimate","p.value"))
-#+ Debugging
-perf %>% tidy() %>% select(c("estimate","p.value"))
-perf %>% tidy() %>% select(c("estimate","p.value")) %>% slice(-1) # removes top row
-perf %>% tidy() %>% select(c("estimate","p.value")) %>% slice((1:3)) # gives 1 to 3 rows
-perf %>% tidy() %>% select(c("estimate","p.value")) %>% slice(-(1:3)) # removes 1 to 3 rwos
-whatisthis(perf) # gives class of the variable
+#' comments here from 03242026
 
-#' `View(perf)` # view inside of object
-
-#+ ## multiple comparison
-perf %>% tidy() %>% select(c("p.value")) %>% slice(-1)
-perf %>% tidy() %>% select(c("p.value")) %>% slice(-1) %>% unlist() %>% p.adjust()
+#' #' # Linear Models
+#' #+ linear_models
+#' example(lm) # a sample for linear model
+#' 
+#' perf <- lm(mpg~hp+wt+qsec,mtcars)
+#' summary(perf) # gives detail summary
+#' summary(perf)$coeff # gives coefficient column
+#' glance(perf) #gives brief
+#' tidy(perf) # gives tidy cleaner version inside
+#' lm(mpg~hp+wt+vs,mtcars) %>% tidy() %>% select(c("estimate","p.value"))
+#' #+ Debugging
+#' perf %>% tidy() %>% select(c("estimate","p.value"))
+#' perf %>% tidy() %>% select(c("estimate","p.value")) %>% slice(-1) # removes top row
+#' perf %>% tidy() %>% select(c("estimate","p.value")) %>% slice((1:3)) # gives 1 to 3 rows
+#' perf %>% tidy() %>% select(c("estimate","p.value")) %>% slice(-(1:3)) # removes 1 to 3 rwos
+#' whatisthis(perf) # gives class of the variable
+#' 
+#' #' `View(perf)` # view inside of object
+#' 
+#' #+ ## multiple comparison
+#' perf %>% tidy() %>% select(c("p.value")) %>% slice(-1)
+#' perf %>% tidy() %>% select(c("p.value")) %>% slice(-1) %>% unlist() %>% p.adjust()
