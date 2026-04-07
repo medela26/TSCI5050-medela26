@@ -97,5 +97,8 @@ labs$VARIABLE %>% table %>% pander
 #' Vitals
 vitals$VARIABLE %>% table %>% pander
 
+#' Optional but highly recommended assignment for next session: Figure out (with an LLM's help wherever necessary, upload your script if you do ask it for help):
+ 
+"How do I convert the vitals and the labs data frames to ones that have a granularity of patient and day, with separate columns for each type of variables in those respective data frames?"
 
 c()
