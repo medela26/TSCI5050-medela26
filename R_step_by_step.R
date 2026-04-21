@@ -373,10 +373,23 @@ mutate(iris, Sepal.Length * Sepal.Width)
 #Plotting your data ----
 plot(iris)
 plot(Sepal.Length~Sepal.Width,data=iris)
-data.matrix(iris) %>% heatmap
 #' this makes names become numeric. ctrl+shift+M pipes
+plot(Sepal.Length~Sepal.Width,data=arrange(iris,Sepal.Width),type="l")
+boxplot(Sepal.Length~Species,data=iris)
+hist(iris$Sepal.Length,breaks = 20)
+data.matrix(iris) %>% heatmap
+data.matrix(iris) %>%  cor(use="pairwise") %>%  heatmap(symm=TRUE,scale="none")
 
-#' comments here from 03242026
+#ggplot version ----
+ggpairs(iris,aes(col=Species))
+ggduo(iris,aes(col=Species),columnsX = c("Petal.Length","Petal.Width"),columnsY = c("Sepal.Length","Sepal.Width","Species"))
+ggplot(iris,aes(x=Sepal.Width,y=Sepal.Length,col=Species,size=Petal.Length,alpha=Petal.Width))+geom_point()
+ggplot(iris,aes(x=Sepal.Width,y=Sepal.Length,col=Species,size=Petal.Length,alpha=Petal.Width))+geom_point()+facet_wrap("Species")
+ggplot(iris,aes(x=Sepal.Width,y=Sepal.Length,col=Species))+geom_point()+geom_line()
+ggplot(iris,aes(x=Sepal.Width,y=Sepal.Length,col=Species,fill=Species))+geom_point()+geom_smooth()
+ggplot(iris,aes(x=Sepal.Width,y=Sepal.Length,col=Species,fill=Species))+geom_point()+geom_smooth(method="lm")+geom_abline(slope=1,intercept=0,col="red",lty=2)
+ggplot(iris,aes(x=Sepal.Width,y=Sepal.Length,col=Species,fill=Species))+geom_point()+geom_smooth(method="lm")+geom_abline(slope=1,intercept=0,col="red",lty=2)+xlim(0,NA)+ylim(0,NA)
+#' comments here from 03242026. Become familiar with using "+Enter" to wrap lines so they don't become difficult to read. Can shade confidence intervals as well.
 
 #' #' # Linear Models
 #' #+ linear_models
