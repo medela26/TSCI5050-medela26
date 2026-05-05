@@ -33,9 +33,10 @@ library(pander); # format tables
 library(broom); # allows to give clean dataset
 library(dplyr); #add dplyr library
 library(constellation); #simulated patient data
-library(tidymodels)
-library(skimr)
-library(tidyr)
+library(tidymodels); #provides help files you can browse for fitting models
+library(skimr); #for visualizing summarizing tables
+library(tidyr); #provides pivot wider
+library(rsample); 
 
 
 options(max.print=500);
@@ -120,9 +121,31 @@ nrow(D0); nrow(D1)
 skim(D1)
 
 D2 <- group_by(D1,PAT_ID) %>% arrange(RECORDED_TIME) %>% mutate(diff = c(NA,diff(RECORDED_TIME)))
-ggplot(D2,aes(y=diff))+geom_histogram()
+ggplot(D2,aes(x=diff))+geom_histogram()
 
 ## To do: convert dates into number of days since that patient's first day
+
+D3 <- group_by(D1,PAT_ID) %>% summarise(start=min(RECORDED_TIME),end=max(RECORDED_TIME)) %>% 
+  rowwise() %>%
+  mutate(RECORDED_TIME = list(seq(start, end, by = "1 day"))) %>%
+  unnest(RECORDED_TIME) %>%
+  select(PAT_ID, RECORDED_TIME) %>% left_join(D1) %>% 
+  group_by(PAT_ID) %>%
+  arrange(RECORDED_TIME, .by_group = TRUE) %>%
+  fill(
+    -PAT_ID
+    , -RECORDED_TIME
+    , .direction = "down"
+  ) %>%
+  ungroup()
+
+#' Looking at relationships between variables
+select(D3, -(1:2)) %>% ggpairs
+
+ggduo(D3, columnsX = c("RECORDED_TIME", "PULSE"), columnsY = c("WBC", "TEMPERATURE", "PLATELETS"))
+ggplot(D3, aes(x = RECORDED_TIME, y = PULSE, "fill" = factor(cut(TEMPERATURE, breaks = 5))))+geom_point() + geom_line(aes(group = PAT_ID, color = factor(PAT_ID))) +
+  scale_color_brewer(aesthetics = "fill")
+
 
 
 c()
